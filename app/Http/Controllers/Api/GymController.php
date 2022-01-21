@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\GymResource;
+use App\Models\Gym;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller
+class GymController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return response([ 'users' => UserResource::collection($users), 'message' => 'Retrieved successfully'], 200);
+        $gyms = GYM::all();
+        return response([ 'gyms' => GymResource::collection($gyms), 'message' => 'Retrieved successfully'], 200);
     }
 
     /**
@@ -35,22 +34,22 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\GYM  $gYM
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(GYM $gYM)
     {
-        return response([ 'user' => new UserResource($user), 'message' => 'Retrieved successfully'], 200);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\GYM  $gYM
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, GYM $gYM)
     {
         //
     }
@@ -58,10 +57,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\GYM  $gYM
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(GYM $gYM)
     {
         //
     }

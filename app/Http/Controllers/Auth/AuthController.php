@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -27,6 +28,12 @@ class AuthController extends Controller
         $user = User::create($input);
         $success['token'] =  $user->createToken('POS')->accessToken;
         $success['name'] =  $user->name;
+
+        $member = new Member();
+        $member->user_id = $user->id;
+        $member->role_id = 4;
+        $member->gym_id = $request->gym;
+        $member->save();
         return response()->json(['success'=>$success], $this->successStatus);
     }
 

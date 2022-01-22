@@ -46,7 +46,7 @@ class AuthController extends Controller
             }
             else{
                 $success['token'] =  $user->createToken('POS')-> accessToken;
-                return response()->json(['success' => $success], $this-> successStatus);
+                return response()->json(['user' => $user ,'success' => $success], $this-> successStatus);
             }
         }
         else{
